@@ -18,7 +18,7 @@
 			If a specific format should not be converted, use a puid-type instruction and set the targetPronom to the same value. -->
 
 
-	<puid name="fmt/123"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95" />
+	<puid name="fmt/123"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
 	<mimeType name="image/tiff"			applicationID="2"	targetExtension="tif"	targetPronom="fmt/353" />
 	<extension name="pdf"				applicationID="4"	targetExtension="pdf"	targetPronom="fmt/354" />
 </config>

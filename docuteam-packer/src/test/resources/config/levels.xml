@@ -63,6 +63,7 @@
 		<LEVELS:MetadataElement					accessorNameID="modeOfAcquisition"/>
 		<LEVELS:MetadataElement					accessorNameID="PID"/>
 		<LEVELS:MetadataElement					accessorNameID="registrationURL"/>
+		<LEVELS:MetadataElement					accessorNameID="sourceURL"/>
 		<LEVELS:MetadataElement					accessorNameID="abstract"/>
 		<LEVELS:MetadataElement					accessorNameID="languageNotes"/>
 		<LEVELS:MetadataElement					accessorNameID="language"/>
@@ -225,6 +226,7 @@
 			<LEVELS:LevelMetadataElement		accessorNameRef="modeOfAcquisition"						isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="PID"									isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="registrationURL"						isMandatory="false"	isRepeatable="true"/>
+			<LEVELS:LevelMetadataElement		accessorNameRef="sourceURL"							isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="abstract"								isMandatory="false"	isRepeatable="true"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="languageNotes"							isMandatory="false"	isRepeatable="false"/>
 			<LEVELS:LevelMetadataElement		accessorNameRef="language"								isMandatory="false"	isRepeatable="true"/>

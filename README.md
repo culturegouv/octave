@@ -16,13 +16,13 @@ The user documentation is available [here](https://docs.docuteam.ch/).
 
 ```
   mvn -T1C clean
-  mvn -T1C -DskipUnitTests=true -DskipITs=true -DskipGUITests=true install
+  mvn -T1C -DskipUnitTests=true -DskipITs=true -DskipGUITests=true -Dbranding=octave install
 ```
 
 - create packer distribution (run install before, if java classes changed in another module - e.g. tools):
 
 ```
-  mvn -pl docuteam-packer -DskipGUITests=true clean package assembly:single
+  mvn -pl docuteam-packer -DskipGUITests=true -Dbranding=octave clean package assembly:single
 ```
 
 - check file header

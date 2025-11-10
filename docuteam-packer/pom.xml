@@ -7,8 +7,8 @@
 		<version>${revision}${sha1}${changelist}</version>
 	</parent>
 
-	<artifactId>docuteam-packer</artifactId>
-	<name>OCTAVE/docuteam packer</name>
+	<artifactId>${packer.artifactId}</artifactId>
+	<name>${app.name}</name>
 
 	<build>
 		<plugins>
@@ -42,6 +42,9 @@
 					<skipTests>${skipGUITests}</skipTests>
 					<forkCount>1</forkCount>
 					<reuseForks>true</reuseForks>
+                    <argLine>
+                        --add-opens=java.base/java.util=ALL-UNNAMED
+                    </argLine>
 				</configuration>
 			</plugin>
 
@@ -91,20 +94,6 @@
 			<groupId>ch.docuteam</groupId>
 			<artifactId>docuteam-converter</artifactId>
 			<version>${project.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.pdftools</groupId>
-					<artifactId>converter</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.pdftools</groupId>
-					<artifactId>O2PProxyAPI</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.pdftools</groupId>
-					<artifactId>O2PProxyNET</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>commons-cli</groupId>
@@ -190,4 +179,49 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>standard</id>
+			<activation>
+				<property>
+					<name>!branding</name>
+				</property>
+			</activation>
+			<properties>
+				<app.name>docuteam packer</app.name>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>OCTAVE</id>
+			<activation>
+				<property>
+					<name>branding</name>
+					<value>octave</value>
+				</property>
+			</activation>
+			<properties>
+				<app.name>OCTAVE/docuteam packer</app.name>
+			</properties>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<filtering>false</filtering>
+					</resource>
+					<resource>
+						<!-- enable filtering: replaces variables -->
+						<directory>src/main/octave-resources-filtered</directory>
+						<filtering>true</filtering>
+						<excludes>
+							<!-- Windows batch files are encoded in US-ASCII and
+								need to be filtered separately -->
+							<exclude>**/*.bat</exclude>
+						</excludes>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
 </project>

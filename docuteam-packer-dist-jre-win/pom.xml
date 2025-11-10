@@ -9,29 +9,16 @@
     <version>${revision}${sha1}${changelist}</version>
   </parent>
 
-  <artifactId>octave-dist-jre-win</artifactId>
-  <name>octave distribution with jre bundled for windows</name>
+  <artifactId>${packer.artifactId.win}</artifactId>
+  <name>${app.name}</name>
   <packaging>pom</packaging>
 
   <properties>
     <!-- if you want to bundle JRE into the distribution, override and set this property to "false" in your individual configuration's pom.xml -->
     <skip-jre>false</skip-jre>
-    <net.adoptopenjdk.java.jre.folderName>jdk-11.0.14.1+1-jre</net.adoptopenjdk.java.jre.folderName>
   </properties>
 
   <build>
-    <resources>
-      <resource>
-        <directory>${project.basedir}/../docuteam-packer-dist/src/main/resources</directory>
-      </resource>
-      <resource>
-        <directory>${project.basedir}/src/main/resources</directory>
-      </resource>
-      <resource>
-        <directory>${project.basedir}/src/main/resources-filtered</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -110,7 +97,7 @@
                 even before the <preCp>. However, we want some directories as first elements of the classpath,
                 and therefore the jar is added as part of the classpath instead -->
               <jar>does-not-exist.jar</jar>
-              <outfile>${project.build.outputDirectory}/distribution/octave.exe</outfile>
+              <outfile>${project.build.outputDirectory}/distribution/docuteam packer.exe</outfile>
               <classPath>
                 <mainClass>ch.docuteam.packer.gui.launcher.LauncherView</mainClass>
                 <addDependencies>false</addDependencies>
@@ -166,8 +153,22 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.pdftools</groupId>
+      <artifactId>O2PProxyAPI</artifactId>
+      <version>${org.pdftools.version}</version>
+      <type>dll</type>
+    </dependency>
+
+    <dependency>
+      <groupId>com.pdftools</groupId>
+      <artifactId>O2PProxyNET</artifactId>
+      <version>${org.pdftools.version}</version>
+      <type>dll</type>
+    </dependency>
+
+    <dependency>
       <groupId>ch.docuteam</groupId>
-      <artifactId>docuteam-packer</artifactId>
+      <artifactId>${packer.branding.prefix}docuteam-packer</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
@@ -177,5 +178,64 @@
       <version>${net.adoptopenjdk.java.jre.version}</version>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>standard</id>
+      <activation>
+        <property>
+          <name>!branding</name>
+        </property>
+      </activation>
+      <properties>
+        <app.name>docuteam packer distribution with jre bundled for windows</app.name>
+        <assembly.baseDirectory>docuteam-packer</assembly.baseDirectory>
+        <assembly.startScript>docuteam packer Win.bat</assembly.startScript>
+      </properties>
+      <build>
+        <resources>
+          <resource>
+            <directory>${project.basedir}/../docuteam-packer-dist/src/main/resources</directory>
+          </resource>
+          <resource>
+            <directory>${project.basedir}/src/main/resources</directory>
+          </resource>
+          <resource>
+            <directory>${project.basedir}/src/main/resources-filtered</directory>
+            <filtering>true</filtering>
+          </resource>
+        </resources>
+      </build>
+    </profile>
+
+    <profile>
+      <id>OCTAVE</id>
+      <activation>
+        <property>
+          <name>branding</name>
+          <value>octave</value>
+        </property>
+      </activation>
+      <properties>
+        <app.name>OCTAVE/docuteam packer distribution with jre bundled for windows</app.name>
+        <assembly.baseDirectory>octave</assembly.baseDirectory>
+        <assembly.startScript>octave.bat</assembly.startScript>
+      </properties>
+      <build>
+        <resources>
+          <resource>
+            <directory>${project.basedir}/../docuteam-packer-dist/src/main/octave-resources</directory>
+          </resource>
+          <resource>
+            <directory>${project.basedir}/src/main/resources</directory>
+          </resource>
+          <resource>
+            <directory>${project.basedir}/src/main/resources-filtered</directory>
+            <filtering>true</filtering>
+          </resource>
+        </resources>
+      </build>
+    </profile>
+  </profiles>
 
 </project>

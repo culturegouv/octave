@@ -6,19 +6,401 @@
 			The string "{[arg1]}" will be replaced with the source filename, "{[arg2]}" will be replaced with the target filename. -->
 	<application id="1"	name="OpenOffice"		executable="Class:ch.docuteam.converter.OOConverter"
 																parameter="{[arg1]}#{[arg2]}" />
-	<application id="2"	name="ImageMagick"		executable="/path/to/convert"
+	<application id="2"	name="FFmpeg"			executable="ffmpeg" />
+	<application id="3"	name="Ghostscript"		executable="gs"
+																parameter="-dPDFA=2#-dBATCH#-dNOPAUSE#-dNOSAFER#-dPDFACompatibilityPolicy=1#-sColorConversionStrategy=RGB#-sDEVICE=pdfwrite#-sOutputFile={[arg2]}#.\scripts\PDFA_def.ps#{[arg1]}" />
+	<application id="4"	name="ImageMagick"		executable="convert"
 																parameter="-compress#none#{[arg1]}#{[arg2]}" />
-	<!-- SIARD does only work on windows platforms -->
-	<application id="3"	name="SIARD Suite"						executable="script\convmdb.cmd"
-																parameter="{[arg1]}#{[arg2]}" />
-	<application id="4"	name="3-Heights Document Converter"		executable="Class:ch.docuteam.converter.PDFToolsConverter"
-																parameter="{[arg1]}#{[arg2]}" />
+	<!-- SIARD only works on windows platforms -->
+	<!-- <application id="5"	name="SIARD Suite"		executable=".\scripts\convmdb.cmd"
+																parameter="{[arg1]}#{[arg2]}" /> -->
+	<!-- <application id="6"	name="PDF-Tools"		executable="Class:ch.docuteam.converter.PDFToolsConverter"
+																parameter="{[arg1]}#{[arg2]}" /> -->
+	<!-- <application id="7" name="PDFToolsConverterWSClient"       executable="Class:ch.docuteam.converter.PDFToolsConverterWSClient"
+						 										parameter="\-\-path-to-input={[arg1]}#\-\-path-to-output={[arg2]}#\-\-spPropertiesFile=config/pdfToolsConverterWS.properties#\-\-j=ConverterOptions#\-\-byName=false#\-\-ax=path/to/xmpdata.xml#\-\-param-name=param-xyz#\-\-param-file=path/to/paramFile"/> -->
+	<!-- <application id="8"	name="pst2pdf"			executable="cmd"
+																parameter="start#readpst#/B#/W#.\scripts\readpst_pdfa.bat#{[arg1]}#{[arg2]}" /> -->
 
 	<!-- File migration instructions can be based on a PUID, mimetype or extension.
 			If a specific format should not be converted, use a puid-type instruction and set the targetPronom to the same value. -->
 
 
-	<puid name="fmt/123"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95" />
-	<mimeType name="image/tiff"			applicationID="2"	targetExtension="tif"	targetPronom="fmt/353" />
-	<extension name="pdf"				applicationID="4"	targetExtension="pdf"	targetPronom="fmt/354" />
+	<!-- AUDIO -->
+
+	<!-- wave -->
+	<!-- We assume that wav is the target format and does not need conversion
+	<puid name="fmt/1"					applicationID="2"	targetExtension="wav"	targetPronom="fmt/141,fmt/142,fmt/143"	parameter="-v#0#-i#{[arg1]}#{[arg2]}" />
+	<puid name="fmt/2"					applicationID="2"	targetExtension="wav"	targetPronom="fmt/141,fmt/142,fmt/143"	parameter="-v#0#-i#{[arg1]}#{[arg2]}" />
+	<puid name="fmt/6"					applicationID="2"	targetExtension="wav"	targetPronom="fmt/141,fmt/142,fmt/143"	parameter="-v#0#-i#{[arg1]}#{[arg2]}" />
+	<puid name="fmt/141"				applicationID="2"	targetExtension="wav"	targetPronom="fmt/141,fmt/142,fmt/143"	parameter="-v#0#-i#{[arg1]}#{[arg2]}" />
+	<puid name="fmt/142"				applicationID="2"	targetExtension="wav"	targetPronom="fmt/141,fmt/142,fmt/143"	parameter="-v#0#-i#{[arg1]}#{[arg2]}" />
+	<puid name="fmt/143"				applicationID="2"	targetExtension="wav"	targetPronom="fmt/141,fmt/142,fmt/143"	parameter="-v#0#-i#{[arg1]}#{[arg2]}" />
+	<puid name="fmt/527"				applicationID="2"	targetExtension="wav"	targetPronom="fmt/141,fmt/142,fmt/143"	parameter="-v#0#-i#{[arg1]}#{[arg2]}" />
+	<puid name="x-fmt/389"				applicationID="2"	targetExtension="wav"	targetPronom="fmt/141,fmt/142,fmt/143"	parameter="-v#0#-i#{[arg1]}#{[arg2]}" />
+	<puid name="x-fmt/396"				applicationID="2"	targetExtension="wav"	targetPronom="fmt/141,fmt/142,fmt/143"	parameter="-v#0#-i#{[arg1]}#{[arg2]}" />
+	<puid name="x-fmt/397"				applicationID="2"	targetExtension="wav"	targetPronom="fmt/141,fmt/142,fmt/143"	parameter="-v#0#-i#{[arg1]}#{[arg2]}" />
+	<mimeType name="audio/wave"			applicationID="2"	targetExtension="wav"	targetPronom="fmt/141,fmt/142,fmt/143"	parameter="-v#0#-i#{[arg1]}#{[arg2]}" />
+	<mimeType name="audio/x-wav"		applicationID="2"	targetExtension="wav"	targetPronom="fmt/141,fmt/142,fmt/143"	parameter="-v#0#-i#{[arg1]}#{[arg2]}" />
+	<mimeType name="audio/x-wave"		applicationID="2"	targetExtension="wav"	targetPronom="fmt/141,fmt/142,fmt/143"	parameter="-v#0#-i#{[arg1]}#{[arg2]}" /> -->
+
+	<!-- aiff -->
+	<!-- No conversion to prevent unnecessary migrations -->
+	<!-- <puid name="x-fmt/135"    applicationID="2"    targetExtension="wav"    targetPronom="fmt/141,fmt/142,fmt/143"    parameter="-v#0#-i#{[arg1]}#{[arg2]}" /> -->
+	<!-- <puid name="fmt/414"    applicationID="2"    targetExtension="wav"    targetPronom="fmt/141,fmt/142,fmt/143"    parameter="-v#0#-i#{[arg1]}#{[arg2]}" /> -->
+	<!-- <mimeType name="audio/x-aiff"    applicationID="2"    targetExtension="wav"    targetPronom="fmt/141,fmt/142,fmt/143"    parameter="-v#0#-i#{[arg1]}#{[arg2]}" /> -->
+
+	<!-- flac -->
+	<!-- According to KOST, flac can be used as an archival format if it is the original delivery format -->
+	<!-- <puid name="fmt/279"    applicationID="2"    targetExtension="wav"    targetPronom="fmt/141,fmt/142,fmt/143"    parameter="-v#0#-i#{[arg1]}#{[arg2]}" /> -->
+	<!-- <mimeType name="audio/flac"    applicationID="2"    targetExtension="wav"    targetPronom="fmt/141,fmt/142,fmt/143"    parameter="-v#0#-i#{[arg1]}#{[arg2]}" /> -->
+	<!-- <mimeType name="audio/x-flac"    applicationID="2"    targetExtension="wav"    targetPronom="fmt/141,fmt/142,fmt/143"    parameter="-v#0#-i#{[arg1]}#{[arg2]}" /> -->
+
+	<!-- alac -->
+	<!-- According to KOST, alac can be used as an archival format if it is the original delivery format -->
+
+	<!-- mp3 -->
+	<!-- According to KOST, mp3 can be used as an archival format if it is the original delivery format -->
+	<!-- <puid name="fmt/134"    applicationID="2"    targetExtension="wav"    targetPronom="fmt/141,fmt/142,fmt/143"    parameter="-v#0#-i#{[arg1]}#{[arg2]}" /> -->
+	<!-- <mimeType name="audio/mpeg"    applicationID="2"    targetExtension="wav"    targetPronom="fmt/141,fmt/142,fmt/143"    parameter="-v#0#-i#{[arg1]}#{[arg2]}" /> -->
+	<!-- <extension name="mp3"    applicationID="2"    targetExtension="wav"    targetPronom="fmt/141,fmt/142,fmt/143"    parameter="-v#0#-i#{[arg1]}#{[arg2]}" /> -->
+
+	<!-- ogg vorbis -->
+	<!-- According to KOST, ogg vorbis can be used as an archival format if it is the original delivery format -->
+
+
+	<!-- VIDEO -->
+	<!-- We do not recommend migrating video formats during ingest. The transformations listed below are examples only, x-fmt/152 is not a recommended target format. -->
+
+	<!-- avi -->
+	<!-- <puid name="fmt/5"				applicationID="2"	targetExtension="dv"	targetPronom="x-fmt/152"	parameter="-v#0#-i#{[arg1]}#-target#pal-dv#{[arg2]}" />
+	<mimeType name="video/x-msvideo"	applicationID="2"	targetExtension="dv"	targetPronom="x-fmt/152"	parameter="-v#0#-i#{[arg1]}#-target#pal-dv#{[arg2]}" /> -->
+
+	<!-- mpeg-4
+	<puid name="fmt/199"			applicationID="2"	targetExtension="dv"	targetPronom="x-fmt/152"	parameter="-v#0#-i#{[arg1]}#-target#pal-dv#{[arg2]}" />
+	<mimeType name="video/mp4"			applicationID="2"	targetExtension="dv"	targetPronom="x-fmt/152"	parameter="-v#0#-i#{[arg1]}#-target#pal-dv#{[arg2]}" />
+	<mimeType name="application/mp4"	applicationID="2"	targetExtension="dv"	targetPronom="x-fmt/152"	parameter="-v#0#-i#{[arg1]}#-target#pal-dv#{[arg2]}" />
+	<mimeType name="application/mp4, video/mp4"	applicationID="2"	targetExtension="dv"	targetPronom="x-fmt/152"	parameter="-v#0#-i#{[arg1]}#-target#pal-dv#{[arg2]}" /> -->
+
+	<!-- quicktime -->
+	<!-- <puid name="x-fmt/384"			applicationID="2"	targetExtension="dv"	targetPronom="x-fmt/152"	parameter="-v#0#-i#{[arg1]}#-target#pal-dv#{[arg2]}" />
+	<mimeType name="video/quicktime"	applicationID="2"	targetExtension="dv"	targetPronom="x-fmt/152"	parameter="-v#0#-i#{[arg1]}#-target#pal-dv#{[arg2]}" /> -->
+
+
+	<!-- DATABASES -->
+	<!-- We do not recommend migrating databases during ingest. -->
+
+	<!-- MS Access 2.0, 95, 97, 2000, 2002
+	<puid name="x-fmt/66"				applicationID="5"	targetExtension="siard"	targetPronom="fmt/161" />
+	<puid name="x-fmt/238"				applicationID="5"	targetExtension="siard"	targetPronom="fmt/161" />
+	<puid name="x-fmt/239"				applicationID="5"	targetExtension="siard"	targetPronom="fmt/161" />
+	<puid name="x-fmt/240"				applicationID="5"	targetExtension="siard"	targetPronom="fmt/161" />
+	<puid name="x-fmt/241"				applicationID="5"	targetExtension="siard"	targetPronom="fmt/161" />
+	<extension name="mdb"				applicationID="5"	targetExtension="siard"	targetPronom="fmt/161" /> -->
+
+	<!-- MS Access 2007
+	<puid name="fmt/275"				applicationID="5"	targetExtension="siard"	targetPronom="fmt/161" />
+	<extension name="accdb"				applicationID="5"	targetExtension="siard"	targetPronom="fmt/161" /> -->
+
+
+	<!-- GRAPHIC -->
+
+	<!-- pdf -->
+	<puid name="fmt/14"					applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/15"					applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/16"					applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/17"					applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/18"					applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/19"					applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/20"					applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/144"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/145"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/146"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/147"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/148"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/157"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/158"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/276"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/488"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/489"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/490"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/491"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/492"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/493"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/1129"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<!-- if using the mimetype or extension, chances are high that even file that are already pdf/a will be converted again -->
+	<!-- <mimeType name="application/pdf"	applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<extension name="pdf"			applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" /> -->
+
+	<!-- postscript
+	<puid name="x-fmt/91"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="x-fmt/406"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="x-fmt/407"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="x-fmt/408"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<puid name="fmt/501"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<mimeType name="application/postscript"	applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" />
+	<extension name="ps"				applicationID="3"	targetExtension="pdf"	targetPronom="fmt/477" /> -->
+
+
+	<!-- WORD PROCESSING -->
+
+	<!-- Word for Windows -->
+	<puid name="fmt/37"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/38"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/39"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/40"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="x-fmt/45"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/412"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/523"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/597"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/599"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/609" 				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<!-- Word for MS-DOS -->
+	<puid name="x-fmt/273"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="x-fmt/274"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="x-fmt/275"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="x-fmt/276"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<!-- Wordperfect -->
+	<puid name="x-fmt/42"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="x-fmt/43"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="x-fmt/44"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="x-fmt/203" 				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="x-fmt/393" 				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="x-fmt/394" 				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<mimeType name="application/vnd.openxmlformats-officedocument.wordprocessingml.template"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="application/vnd.ms-word.template.macroEnabled.12"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="application/vnd.ms-word.document.macroEnabled.12"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="application/vnd.wordperfect"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="application/msword"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="doc"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="docx"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="docm"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<!-- Rich Text -->
+	<puid name="fmt/45"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/50"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/52"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/53"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<mimeType name="application/rtf"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="text/rtf"			applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="rtf"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<!-- OpenDocument Text -->
+	<puid name="fmt/136"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/290"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/291"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/1756"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<mimeType name="application/vnd.oasis.opendocument.text"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="application/vnd.oasis.opendocument.text-template"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="odt"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="ott"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+
+	<!-- SPREADSHEET -->
+
+	<!-- Microsoft Excel for Windows (Office Open XML, e.g. XLSX, will not be converted) -->
+	<puid name="fmt/55"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/56"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/57"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/59"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/61"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/62"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<!-- <puid name="fmt/214"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" /> -->
+	<puid name="fmt/595"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<!-- <puid name="fmt/598"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" /> -->
+	<puid name="fmt/627"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/628"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<!-- Microsoft Excel for Mac -->
+	<puid name="fmt/175"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/176"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/177"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<mimeType name="application/vnd.ms-excel"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="application/vnd.ms-excel.addin.macroEnabled.12"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="application/vnd.ms-excel.template.macroEnabled.12"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="application/vnd.ms-excel.sheet.binary.macroEnabled.12"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<!-- <mimeType name="application/vnd.ms-excel.sheet.binary.macroEnabled.12"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" /> -->
+	<!-- <mimeType name="application/vnd.openxmlformats-officedocument.spreadsheetml.template"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" /> -->
+	<extension name="xls"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="xlc"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="xlw"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="xlm"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<!-- <extension name="xlsx"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" /> -->
+	<extension name="xlsm"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<!-- OpenDocument Spreadsheet
+	<puid name="fmt/137"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/294"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/295"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/1755"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<mimeType name="application/vnd.oasis.opendocument.spreadsheet"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="application/vnd.oasis.opendocument.spreadsheet-template"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="ods"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="ots"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" /> -->
+
+
+	<!-- PRESENTATION -->
+
+	<!-- Microsoft PowerPoint for Windows -->
+	<puid name="x-fmt/87"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="x-fmt/88"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/125"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/126"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/215"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/487"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/629"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/630"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/631"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/632"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/633"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/636"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<!-- Microsoft PowerPoint for Mac -->
+	<puid name="fmt/179"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/181"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<mimetype name="application/vnd.ms-powerpoint.slide.macroEnabled.12"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimetype name="application/vnd.ms-powerpoint.addin.macroEnabled.12"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimetype name="application/vnd.ms-powerpoint.template.macroEnabled.12"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimetype name="application/vnd.ms-powerpoint.slideshow.macroEnabled.12"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimetype name="application/vnd.openxmlformats-officedocument.presentationml.template"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimetype name="application/vnd.openxmlformats-officedocument.presentationml.slideshow"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimetype name="application/vnd.ms-powerpoint"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="ppt"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="pptx"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="pps"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<!-- OpenDocument Presentation -->
+	<puid name="fmt/138"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/292"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/293"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/1754"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<mimeType name="application/vnd.oasis.opendocument.presentation"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="application/vnd.oasis.opendocument.presentation-template"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="odp"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<extension name="otp"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<!-- General Office Application -->
+	
+	<!-- Microsoft Office Open XML -->
+	<puid name="fmt/189"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<!-- Microsoft Office Encrypted Document -->
+	<puid name="fmt/494"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+
+	<!-- OLE2 Compound Document -->
+	<!-- Careful, this is for example the msg format for email messages from outlook and needs other conversion software than OpenOffice -->
+	<!-- <puid name="fmt/111"			applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" /> -->
+
+	<!-- E-MAIL -->
+	<!-- E-mail conversion requires special attention because of the handling of attachments -->
+
+
+	<!-- EML
+	<puid name="fmt/278"			applicationID=""	targetExtension="pdf"	targetPronom="" />
+	<puid name="fmt/950"      		applicationID=""  	targetExtension="pdf"  	targetPronom="" />
+	<extension name="eml"			applicationID=""	targetExtension="pdf"	targetPronom="" /> -->
+
+	<!-- MSG
+	<puid name="x-fmt/430"			applicationID=""	targetExtension="pdf"	targetPronom="" />
+	<extension name="msg"			applicationID=""	targetExtension="pdf"	targetPronom=""> -->
+
+	<!-- Container
+	<extension name="pst"				applicationID="8"	targetExtension=""	targetPronom="" /> -->
+
+
+	<!-- TEXT -->
+	<!-- We assume that text-type files are a target format and do not need conversion -->
+
+	<!-- Plain Text
+	<puid name="x-fmt/111"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="text/plain"			applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" /> -->
+
+	<!-- XML
+	<puid name="fmt/101"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="application/xml"	applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" /> -->
+
+	<!-- HTML
+	<puid name="fmt/96"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/97"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/98"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/99"					applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/100"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/102"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<puid name="fmt/471"				applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" />
+	<mimeType name="text/html"			applicationID="1"	targetExtension="pdf"	targetPronom="fmt/95,fmt/354" /> -->
+
+
+	<!-- IMAGE -->
+	
+	<!-- Exchangeable Image File -->
+	<!-- <puid name="fmt/41"					applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <puid name="fmt/42"					applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <puid name="fmt/43"					applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <puid name="fmt/44"					applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <puid name="fmt/645"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <puid name="x-fmt/398"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <puid name="x-fmt/390"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <puid name="x-fmt/391"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <mimeType name="image/jpeg"			applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <extension name="jpg"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <extension name="jpeg"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+
+	<!-- Portable Network Graphics -->
+	<!-- <puid name="fmt/11"					applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <puid name="fmt/12"					applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <puid name="fmt/13"					applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <mimeType name="image/png"			applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <extension name="png"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+
+	<!-- Graphics Interchange Format -->
+	<!-- <puid name="fmt/3"					applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <puid name="fmt/4"					applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <mimeType name="image/gif"			applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <extension name="gif"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+
+	<!-- Bitmap -->
+	<puid name="fmt/114"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+	<puid name="fmt/115"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+	<puid name="fmt/116"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+	<puid name="fmt/117"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+	<puid name="fmt/118"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+	<puid name="fmt/119"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+	<mimeType name="image/bmp"			applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+	<extension name="bmp"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+
+	<!-- Adobe Photoshop -->
+	<puid name="x-fmt/92"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+	<mimeType name="image/vnd.adobe.photoshop"	applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+	<extension name="psd"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+
+	<!-- Encapsulated Postscript
+	<puid name="fmt/122"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+	<puid name="fmt/123"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+	<puid name="fmt/124"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" />
+	<extension name="eps"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+
+	<!-- tiff -->
+	<!-- <puid name="x-fmt/387"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <puid name="x-fmt/388"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <puid name="x-fmt/399"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <mimeType name="image/tiff"			applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+	<!-- <extension name="tiff"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353" /> -->
+
+	<!-- Kodak Photo-CD -->
+	<puid name="fmt/211"				applicationID="4"	targetExtension="tif"	targetPronom="fmt/353"	parameter="-compress#none#-colorspace#sRGB#{[arg1]}[5]#{[arg2]}" />
+
+
+	<!-- OTHER -->
+
+	<!-- Octetstreams -->
+	<!-- Try not to use this definition as an octet-stream could basically be anything (audio, video, text, mails, ...) -->
+	<!-- <mimeType name="application/_octet-stream"	applicationID=""	targetExtension=""	targetPronom=""	parameter="" /> -->
 </config>

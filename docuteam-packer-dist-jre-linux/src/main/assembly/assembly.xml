@@ -5,13 +5,13 @@
   <formats>
     <format>zip</format>
   </formats>
-  <baseDirectory>octave</baseDirectory>
+  <baseDirectory>${assembly.baseDirectory}</baseDirectory>
 
   <!-- Adds the dependencies of our application to the lib directory -->
   <dependencySets>
     <dependencySet>
       <excludes>
-        <exclude>ch.docuteam:docuteam-packer</exclude>
+        <exclude>ch.docuteam:${packer.branding.prefix}docuteam-packer</exclude>
       </excludes>
       <!--
           Project artifact is not copied under library directory since
@@ -24,7 +24,7 @@
 
     <dependencySet>
       <includes>
-        <include>ch.docuteam:docuteam-packer</include>
+        <include>ch.docuteam:${packer.branding.prefix}docuteam-packer</include>
       </includes>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory></outputDirectory>
@@ -40,7 +40,7 @@
       <directory>${project.build.outputDirectory}/distribution</directory>
       <outputDirectory/>
       <includes>
-        <include>octave.sh</include>
+        <include>${assembly.startScript}</include>
       </includes>
       <fileMode>755</fileMode>
     </fileSet>

@@ -5,29 +5,29 @@
   <formats>
     <format>zip</format>
   </formats>
-  <baseDirectory>octave</baseDirectory>
+  <baseDirectory>${assembly.baseDirectory}</baseDirectory>
 
   <!-- Adds the dependencies of our application to the lib directory -->
   <dependencySets>
     <dependencySet>
       <excludes>
-        <exclude>ch.docuteam:docuteam-packer</exclude>
+        <exclude>ch.docuteam:${packer.branding.prefix}docuteam-packer</exclude>
       </excludes>
       <!--
           Project artifact is not copied under library directory since
           it is added to the root directory of the zip package.
       -->
       <useProjectArtifact>false</useProjectArtifact>
-      <outputDirectory>octave.app/Contents/docuteam packer/lib</outputDirectory>
+      <outputDirectory>${assembly.baseDirectory}.app/Contents/docuteam packer/lib</outputDirectory>
       <unpack>false</unpack>
     </dependencySet>
 
     <dependencySet>
       <includes>
-        <include>ch.docuteam:docuteam-packer</include>
+        <include>ch.docuteam:${packer.branding.prefix}docuteam-packer</include>
       </includes>
       <useProjectArtifact>false</useProjectArtifact>
-      <outputDirectory>octave.app/Contents/docuteam packer</outputDirectory>
+      <outputDirectory>${assembly.baseDirectory}.app/Contents/docuteam packer</outputDirectory>
       <unpack>false</unpack>
     </dependencySet>
   </dependencySets>
@@ -40,7 +40,7 @@
       <directory>${project.build.outputDirectory}/distribution</directory>
       <outputDirectory/>
       <includes>
-        <include>octave.app/Contents/MacOS/octave</include>
+        <include>${assembly.baseDirectory}.app/Contents/MacOS/docuteam packer</include>
       </includes>
       <fileMode>755</fileMode>
     </fileSet>
@@ -52,7 +52,7 @@
     <!-- adds the generic config to the distribution -->
     <fileSet>
       <directory>${project.build.outputDirectory}</directory>
-      <outputDirectory>octave.app/Contents/docuteam packer</outputDirectory>
+      <outputDirectory>${assembly.baseDirectory}.app/Contents/docuteam packer</outputDirectory>
       <excludes>
         <exclude>distribution/</exclude>
       </excludes>

@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    volumes:
+      - $COSMOS_ROOT_DIRECTORY:/work
+      - $MAVEN_DIRECTORY/repository:/root/.m2/repository
+    environment:
+      CLOUDSMITH_API_USERNAME: ${CLOUDSMITH_API_USERNAME}
+      CLOUDSMITH_API_KEY: ${CLOUDSMITH_API_KEY}
+    working_dir: /work/
+    entrypoint: /work/docuteam-packer/docker-entrypoint.test.sh
+    command: /work/docuteam-packer/run_tests.sh

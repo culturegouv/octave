@@ -9,14 +9,13 @@
     <version>${revision}${sha1}${changelist}</version>
   </parent>
 
-  <artifactId>octave-dist-jre-mac</artifactId>
-  <name>octave distribution with jre bundled for macOS</name>
+  <artifactId>${packer.artifactId.mac}</artifactId>
+  <name>${app.name}</name>
   <packaging>pom</packaging>
 
   <properties>
     <!-- if you want to bundle JRE into the distribution, override and set this property to "false" in your individual configuration's pom.xml -->
     <skip-jre>false</skip-jre>
-    <net.adoptopenjdk.java.jre.folderName>jdk-11.0.14.1+1-jre</net.adoptopenjdk.java.jre.folderName>
   </properties>
 
   <build>
@@ -97,7 +96,7 @@
   <dependencies>
     <dependency>
       <groupId>ch.docuteam</groupId>
-      <artifactId>docuteam-packer</artifactId>
+      <artifactId>${packer.branding.prefix}docuteam-packer</artifactId>
       <version>${project.version}</version>
     </dependency>
 
@@ -108,4 +107,34 @@
       <version>${net.adoptopenjdk.java.jre.version}</version>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>standard</id>
+      <activation>
+        <property>
+          <name>!branding</name>
+        </property>
+      </activation>
+      <properties>
+        <app.name>docuteam packer distribution with jre bundled for macOS</app.name>
+        <assembly.baseDirectory>docuteam-packer</assembly.baseDirectory>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>OCTAVE</id>
+      <activation>
+        <property>
+          <name>branding</name>
+          <value>octave</value>
+        </property>
+      </activation>
+      <properties>
+        <app.name>OCTAVE/docuteam packer distribution with jre bundled for macOS</app.name>
+        <assembly.baseDirectory>octave</assembly.baseDirectory>
+      </properties>
+    </profile>
+  </profiles>
+
 </project>

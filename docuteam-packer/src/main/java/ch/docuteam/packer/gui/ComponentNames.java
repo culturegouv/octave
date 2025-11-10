@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package ch.docuteam.packer.gui;
 
 public class ComponentNames {
@@ -53,7 +52,6 @@ public class ComponentNames {
     public static final String SIP_CREATE_NEW_MENU_ITEM = "SIP_CREATE_NEW_MENU_ITEM";
 
     public static final String SIP_CREATE_NEW_SIP_FROM_CSV_ACTION_MENU_ITEM = "SIP_CREATE_NEW_SIP_FROM_CSV_ACTION_MENU_ITEM";
-
     public static final String WORKSPACE_MENU = "WORKSPACE_MENU";
 
     public static final String WORKSPACE_SELECT_FOLDER_MENU_ITEM = "WORKSPACE_SELECT_FOLDER_MENU_ITEM";

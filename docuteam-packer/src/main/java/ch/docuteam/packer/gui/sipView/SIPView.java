@@ -328,6 +328,8 @@ public class SIPView extends JFrame {
 
     protected Action exportAsCSVFileAction;
 
+    private Action exportAsSEDA23Action;
+
     private Action exportAsSEDA22Action;
 
     private Action exportAsSEDA21Action;
@@ -889,6 +891,18 @@ public class SIPView extends JFrame {
         exportAsCSVFileAction.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipExportAsCSVFile"));
         exportAsCSVFileAction.setEnabled(true);
 
+        exportAsSEDA23Action = new AbstractAction(I18N.translate("ExportAsSEDA23Action"), getImageIcon(
+                "ExportAsSEDA23.png")) {
+
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                exportAsSEDA_ActionButtonClicked(new ch.docuteam.mapping.seda23.Exporter(),
+                        "TitleSaveSIPAsSEDA23_SIP", "ExportAsSEDA23ActionSuccess", "ExportAsSEDA23ActionFailure");
+            }
+        };
+        exportAsSEDA23Action.putValue(Action.SHORT_DESCRIPTION, I18N.translate("ToolTipExportAsSEDA23Action"));
+        exportAsSEDA23Action.setEnabled(true);
+
         exportAsSEDA22Action = new AbstractAction(I18N.translate("ExportAsSEDA22Action"), getImageIcon(
                 "ExportAsSEDA22.png")) {
 
@@ -1268,6 +1282,7 @@ public class SIPView extends JFrame {
         sipExportSubMenu = new JMenu(I18N.translate("MenuSIPExport"));
         sipExportSubMenu.setIcon(getImageIcon("SIPExport.png"));
         sipExportSubMenu.setToolTipText(I18N.translate("ToolTipSIPExport"));
+        sipExportSubMenu.add(new JMenuItem(exportAsSEDA23Action));
         sipExportSubMenu.add(new JMenuItem(exportAsSEDA22Action));
         sipExportSubMenu.add(new JMenuItem(exportAsSEDA21Action));
         sipExportSubMenu.add(new JMenuItem(exportAsSEDA1Action));

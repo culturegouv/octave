@@ -7,13 +7,15 @@
 |docuteamPacker.properties         ||
 |charConversionMap.properties      ||
 |container-signature-20180920.xml  |ch.docuteam.tools.file.MetadataProviderDROID |
+|crules.xml                        |ch.docuteam.actions.storage.FOXMLCreator |
 |document-formats.xml              |ch.docuteam.converter.OOConverter |
 |DROID_SignatureFile_V95.xml       |ch.docuteam.tools.file.MetadataProviderDROID |
 |fileNameNormalizer.properties     ||
 |filePreviewConfigurator.properties||
 |jhove.conf                        |ch.docuteam.tools.file.MetadataProviderJHOVE, ch.docuteam.tools.file.FileChecksumCalculator? (propably only a obsolote JavaDoc) |
+|levels_BAR.xml                    |ch.docuteam.actions.ingest.BARSIPConverter |
 |levels.xml                        |ch.docuteam.aipcreatorETH.ingest, ch.docuteam.darc.mdconfig.LevelOfDescription |
-|log4j2.xml                        |ch.docuteam.tools.out.Logger|
+|log4j2.xml                        |ch.docuteam.tools.out.Logger, ch.docuteam.actions.util.Log4jFileAppender (deprecated and no longer used)|
 |migration-config.xml              |ch.docuteam.converter.FileConverter |
 |pdfToolsConverterWS.properties    |ch.docuteam.converter.PDFToolsConverterWSClient |
 
@@ -33,21 +35,33 @@ Main class: ch.docuteam.packer.gui.launcher.LauncherView
 
 Programm arguments: NONE
 VM arguments: -Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager
-Configuration file: docuteam-packer\src\main\resources\config/docuteamPacker.properties
+Configuration file: cosmos\docuteam-packer\src\main\resources\config/docuteamPacker.properties
 
 Run in debugging mode by setting in docuteamPacker.properties:
 - docuteamPacker.isDevMode = true
+- create copy of docuteamPacker.example.properties to docuteamPacker.properties
+- create copy of levels.example.xml to levels.xml
 
 switch on/off reports, when running from eclipse, by adding/outcommenting to docuteamPacker.properties:
 docuteamPacker.reportsDir.Win = ./src/main/resources/templates/reports
 
 
+## Run packer in eclipse with external configuration
+s. wiki: running_apps_in_eclipse_with_external_configuration
+
+
 ## Testing
 
-### Run tests via maven
-mvn test
+### Run Tests within Docker
+
+Run the tests using docker with
+
+```
+docker-compose run --rm tests
+```
 
 ### Run Swift GUI tests
+
 Click on the "LauncherViewSwingIT.java" file in Java and select "Run as" -> "JUnit test".
 
 #### Mac OS X
@@ -57,17 +71,18 @@ above. It'll fail because your IDE won't have the permissions yet but one run is
 be shown. Open the System preferences, open "Security & Privacy", click on the "Privacy" tab , click on "Accessibility" and check either
 "IntelliJ" or "Eclipse" on the right side.
 
-##Configuration Notes
+## Configuration Notes
+
 Sample files for skos and csv files:
-docuteam-packer\src\main\resources\config/skos -> docuteam-dist-templates/docuteam-dist-template-packer/octave-docuteam-packer-dist/src/main/resources/docuteam+packer.app/Contents/docuteam+packer/config/skos
-docuteam-packer\src\main\resources\config/csv -> docuteam-dist-templates/docuteam-dist-template-packer/octave-docuteam-packer-dist/src/main/resources/docuteam+packer.app/Contents/docuteam+packer/config/csv
+cosmos\docuteam-packer\src\main\resources\config/skos -> SVN/configurations/656/client-apps/packer/src/main/resources/docuteam+packer.app/Contents/docuteam+packer/config/skos
+cosmos\docuteam-packer\src\main\resources\config/csv -> SVN/configurations/656/client-apps/packer/src/main/resources/docuteam+packer.app/Contents/docuteam+packer/config/csv
 
 Logger configuration:
-docuteam-packer\src\main\resources\log4j2.xml
+cosmos\docuteam-packer\src\main\resources\log4j2.xml
 
 Default levels.xml
-docuteam-packer\src\main\resources\config\levels.xml
+cosmos\docuteam-packer\src\main\resources\config\levels.xml
 
 FileNameNormalizer uses:
-docuteam-packer\src\main\resources\config\fileNameNormalizer.properties
-docuteam-packer\src\main\resources\config\charConversionMap.properties
+cosmos\docuteam-packer\src\main\resources\config\fileNameNormalizer.properties
+cosmos\docuteam-packer\src\main\resources\config\charConversionMap.properties
