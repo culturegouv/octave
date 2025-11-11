@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package ch.docuteam.packer.gui.sipView;
 
 import static ch.docuteam.packer.gui.PackerConstants.CLICK_COUNT_TO_START;

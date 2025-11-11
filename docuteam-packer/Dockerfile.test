@@ -1,0 +1,5 @@
+FROM docuteam/maven:jdk-17
+
+RUN apt-get update && \
+    apt-get install -y xvfb \
+    libxrender1 libxtst6 libxi6

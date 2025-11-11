@@ -10,7 +10,49 @@
   </parent>
 
   <artifactId>docuteam-packer-dist</artifactId>
-  <name>docuteam packer distribution shared resources</name>
+  <name>${app.name}</name>
   <packaging>pom</packaging>
+
+
+  <profiles>
+    <profile>
+      <id>standard</id>
+      <activation>
+        <property>
+          <name>!branding</name>
+        </property>
+      </activation>
+      <properties>
+        <app.name>docuteam packer distribution shared resources</app.name>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>OCTAVE</id>
+      <activation>
+        <property>
+          <name>branding</name>
+          <value>octave</value>
+        </property>
+      </activation>
+      <properties>
+        <app.name>OCTAVE/docuteam packer distribution shared resources</app.name>
+      </properties>
+      <build>
+        <resources>
+          <resource>
+            <!-- enable filtering: replaces variables -->
+            <directory>src/main/octave-resources</directory>
+          </resource>
+          <resource>
+            <directory>src/main/resources</directory>
+            <excludes>
+              <exclude>**/*</exclude>
+            </excludes>
+          </resource>
+        </resources>
+      </build>
+    </profile>
+  </profiles>
 
 </project>

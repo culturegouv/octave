@@ -807,7 +807,7 @@ public class LauncherView extends JFrame {
         popupMenu.add(new JMenuItem(copySIPInWorkspaceAction));
         popupMenu.add(new JMenuItem(deleteSIPInWorkspaceAction));
 
-        programMenu = new JMenu(I18N.translate("TitleMain"));
+        programMenu = new JMenu(BuildInfo.getProduct());
         programMenu.setIcon(getImageIcon("DocuteamPackerSmall.png"));
 
         programMenu.add(new JMenuItem(aboutAction));

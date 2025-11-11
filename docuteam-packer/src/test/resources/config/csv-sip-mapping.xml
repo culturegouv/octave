@@ -18,4 +18,21 @@
         <sipImportColumn tableHeaderLabel="Title" paramID="title"/>
     </sipImportColumnMapping>
 
+    <sipImportMetadataColumnMapping>
+        <sipImportMetadataColumn tableHeaderLabel="Identifier" matterhornMetsAccessorID="refCode"/>
+        <sipImportMetadataColumn tableHeaderLabel="Creator" matterhornMetsAccessorID="origination"/>
+        <sipImportMetadataColumn tableHeaderLabel="Subject" matterhornMetsAccessorID="subjectGeneral"/>
+        <sipImportMetadataColumn tableHeaderLabel="Description" matterhornMetsAccessorID="scopeContent"/>
+        <sipImportMetadataColumn tableHeaderLabel="Publisher" matterhornMetsAccessorID="publisher"/>
+        <sipImportMetadataColumn tableHeaderLabel="Contributor" matterhornMetsAccessorID="involved"/>
+        <sipImportMetadataColumn tableHeaderLabel="Date" matterhornMetsAccessorID="date"/>
+        <sipImportMetadataColumn tableHeaderLabel="Type" matterhornMetsAccessorID="objectType"/>
+        <sipImportMetadataColumn tableHeaderLabel="Format" matterhornMetsAccessorID="format"/>
+        <sipImportMetadataColumn tableHeaderLabel="Source" matterhornMetsAccessorID="accessNr"/>
+        <sipImportMetadataColumn tableHeaderLabel="Language" matterhornMetsAccessorID="language"/>
+        <sipImportMetadataColumn tableHeaderLabel="Relation" matterhornMetsAccessorID="relatedMaterial"/>
+        <sipImportMetadataColumn tableHeaderLabel="Coverage" matterhornMetsAccessorID="geogName"/>
+        <sipImportMetadataColumn tableHeaderLabel="Rights" matterhornMetsAccessorID="accessPolicy"/>
+    </sipImportMetadataColumnMapping>
+
 </sipImportTableConfig>
