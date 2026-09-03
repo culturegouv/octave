@@ -55,20 +55,89 @@
       </plugin>
 
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>${maven-dependency-plugin.plugin.version}</version>
+        <groupId>com.googlecode.maven-download-plugin</groupId>
+        <artifactId>download-maven-plugin</artifactId>
+        <version>1.8.1</version>
         <executions>
+
+          <!-- Download Linux JDK -->
           <execution>
+            <id>download-jdk-linux</id>
             <phase>generate-resources</phase>
             <goals>
-              <goal>unpack-dependencies</goal>
+              <goal>wget</goal>
             </goals>
             <configuration>
-              <includeGroupIds>net.adoptopenjdk</includeGroupIds>
-              <includeTypes>zip</includeTypes>
-              <includeArtifactIds>jre-win</includeArtifactIds>
-              <outputDirectory>target/win</outputDirectory>
+              <url>https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.10%2B7/OpenJDK21U-jdk_x64_windows_hotspot_21.0.10_7.zip</url>
+              <outputDirectory>${project.build.directory}/jdks</outputDirectory>
+              <outputFileName>OpenJDK21U-jdk_x64_windows_hotspot_21.zip</outputFileName>
+              <cacheDirectory>${user.home}/.m2/jdk-cache</cacheDirectory>
+              <sha256>08cae782814f027f8b159d6b68823f0f87422eb475c1a0ea1abc7a4357aaf11f</sha256>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>unpack-jdk-win</id>
+            <phase>generate-resources</phase>
+            <goals><goal>run</goal></goals>
+            <configuration>
+              <target>
+                <unzip src="${project.build.directory}/jdks/OpenJDK21U-jdk_x64_windows_hotspot_21.zip"
+                       dest="${project.build.directory}/jdks/win"/>
+              </target>
+            </configuration>
+          </execution>
+          <execution>
+            <id>rename-jdk-win</id>
+            <phase>generate-resources</phase>
+            <goals><goal>run</goal></goals>
+            <configuration>
+              <target>
+                <move todir="${project.build.directory}/jdks/win/jdk">
+                  <fileset dir="${project.build.directory}/jdks/win">
+                    <include name="jdk-*/**"/>
+                  </fileset>
+                  <cutdirsmapper dirs="1"/>
+                </move>
+              </target>
+            </configuration>
+          </execution>
+          <execution>
+            <id>create-runtime-image-win</id>
+            <phase>prepare-package</phase>
+            <goals><goal>run</goal></goals>
+            <configuration>
+              <target>
+                <delete dir="${project.build.directory}/jre" failonerror="false"/>
+
+                <exec executable="${java.home}/bin/jlink"
+                      failonerror="true">
+                  <arg value="--module-path"/>
+                  <arg value="${project.build.directory}/jdks/win/jdk/jmods"/>
+                  <arg value="--add-modules"/>
+                  <arg value="java.base,java.compiler,java.datatransfer,java.desktop,java.logging,java.management,java.naming,java.net.http,java.prefs,java.rmi,java.scripting,java.security.jgss,java.security.sasl,java.sql,java.xml,jdk.security.auth,jdk.unsupported,jdk.xml.dom"/>
+                  <arg value="--output"/>
+                  <arg value="${project.build.directory}/jre-raw"/>
+                  <arg value="--compress=zip-9"/>
+                  <arg value="--strip-debug"/>
+                  <arg value="--no-header-files"/>
+                  <arg value="--no-man-pages"/>
+                </exec>
+
+                <echo message="Flattening symlinks for Windows compatibility..."/>
+                <copy todir="${project.build.directory}/jre">
+                  <fileset dir="${project.build.directory}/jre-raw" followsymlinks="true"/>
+                </copy>
+
+                <delete dir="${project.build.directory}/jre-raw"/>
+              </target>
             </configuration>
           </execution>
         </executions>
@@ -76,8 +145,7 @@
 
       <!-- create a packer.exe with LAUNCH4J (s. http://launch4j.sourceforge.net/docs.html#Configuration_file) (executed before assembly)
 		      	mvn -pl docuteam-packer-dist clean package -Pwin assembly:single
-		      	-->
-
+	   -->
       <plugin>
         <!-- This calls launch4j to create the program EXE -->
         <groupId>com.akathist.maven.plugins.launch4j</groupId>
@@ -170,12 +238,6 @@
       <groupId>ch.docuteam</groupId>
       <artifactId>${packer.branding.prefix}docuteam-packer</artifactId>
       <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>net.adoptopenjdk</groupId>
-      <artifactId>jre-win</artifactId>
-      <type>zip</type>
-      <version>${net.adoptopenjdk.java.jre.version}</version>
     </dependency>
   </dependencies>
 

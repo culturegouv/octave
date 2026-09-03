@@ -1,4 +1,4 @@
-FROM docuteam/maven:jdk-17
+FROM docuteam/maven:jdk-21
 
 RUN apt-get update && \
     apt-get install -y xvfb \

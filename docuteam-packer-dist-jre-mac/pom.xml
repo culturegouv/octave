@@ -47,20 +47,85 @@
       </plugin>
 
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>${maven-dependency-plugin.plugin.version}</version>
+        <groupId>com.googlecode.maven-download-plugin</groupId>
+        <artifactId>download-maven-plugin</artifactId>
+        <version>1.8.1</version>
         <executions>
+
+          <!-- Download mac JDK -->
           <execution>
+            <id>download-jdk-mac</id>
             <phase>generate-resources</phase>
             <goals>
-              <goal>unpack-dependencies</goal>
+              <goal>wget</goal>
             </goals>
             <configuration>
-              <includeGroupIds>net.adoptopenjdk</includeGroupIds>
-              <includeTypes>tgz</includeTypes>
-              <includeArtifactIds>jre-macos</includeArtifactIds>
-              <outputDirectory>target/mac</outputDirectory>
+              <url>https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.10%2B7/OpenJDK21U-jdk_x64_mac_hotspot_21.0.10_7.tar.gz</url>
+              <outputDirectory>${project.build.directory}/jdks</outputDirectory>
+              <outputFileName>jdk-21-mac.tar.gz</outputFileName>
+              <cacheDirectory>${user.home}/.m2/jdk-cache</cacheDirectory>
+              <sha256>7484d5d4cdb02fc17a842ab86ddac2524a0365066659c46b2e258c64152379cd</sha256>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>unpack-jdk-mac</id>
+            <phase>generate-resources</phase>
+            <goals><goal>run</goal></goals>
+            <configuration>
+              <target>
+                <untar src="${project.build.directory}/jdks/jdk-21-mac.tar.gz"
+                       dest="${project.build.directory}/jdks/mac"
+                       compression="gzip"/>
+              </target>
+            </configuration>
+          </execution>
+          <execution>
+            <id>rename-jdk-mac</id>
+            <phase>generate-resources</phase>
+            <goals><goal>run</goal></goals>
+            <configuration>
+              <target>
+                <move todir="${project.build.directory}/jdks/mac/jdk">
+                  <fileset dir="${project.build.directory}/jdks/mac">
+                    <include name="jdk-*/Contents/Home/**"/>
+                  </fileset>
+                  <cutdirsmapper dirs="3"/>
+                </move>
+              </target>
+            </configuration>
+          </execution>
+          <execution>
+            <id>create-runtime-image-mac</id>
+            <phase>prepare-package</phase>
+            <goals><goal>run</goal></goals>
+            <configuration>
+              <target>
+                <delete dir="${project.build.directory}/jre" failonerror="false"/>
+
+                <chmod file="${project.build.directory}/jdks/mac/jdk/bin/*" perm="755"/>
+                <chmod file="${project.build.directory}/jdks/mac/jdk/lib/jspawnhelper" perm="755" failonerror="false"/>
+                <exec executable="${java.home}/bin/jlink"
+                      failonerror="true">
+                  <arg value="--module-path"/>
+                  <arg value="${project.build.directory}/jdks/mac/jdk/jmods"/>
+                  <arg value="--add-modules"/>
+                  <arg value="java.base,java.compiler,java.datatransfer,java.desktop,java.logging,java.management,java.naming,java.net.http,java.prefs,java.rmi,java.scripting,java.security.jgss,java.security.sasl,java.sql,java.xml,jdk.security.auth,jdk.unsupported,jdk.xml.dom"/>
+                  <arg value="--output"/>
+                  <arg value="${project.build.directory}/jre"/>
+                  <arg value="--compress=zip-9"/>
+                  <arg value="--strip-debug"/>
+                  <arg value="--no-header-files"/>
+                  <arg value="--no-man-pages"/>
+                </exec>
+              </target>
             </configuration>
           </execution>
         </executions>
@@ -99,13 +164,6 @@
       <artifactId>${packer.branding.prefix}docuteam-packer</artifactId>
       <version>${project.version}</version>
     </dependency>
-
-    <dependency>
-      <groupId>net.adoptopenjdk</groupId>
-      <artifactId>jre-macos</artifactId>
-      <type>tgz</type>
-      <version>${net.adoptopenjdk.java.jre.version}</version>
-    </dependency>
   </dependencies>
 
   <profiles>
@@ -118,7 +176,7 @@
       </activation>
       <properties>
         <app.name>docuteam packer distribution with jre bundled for macOS</app.name>
-        <assembly.baseDirectory>docuteam-packer</assembly.baseDirectory>
+        <assembly.baseDirectory>docuteam packer</assembly.baseDirectory>
       </properties>
     </profile>
 

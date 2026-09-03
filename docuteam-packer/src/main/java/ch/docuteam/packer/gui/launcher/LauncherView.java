@@ -1872,7 +1872,9 @@ public class LauncherView extends JFrame {
                     }
 
                     //TODO Implement option
-                    final SipCreationArgs sipCreationArgs = new SipCreationArgs(Path.of(newSIPFileName), selectedSAid, selectedDSSid, checksum, skipLevelValidation);
+                    final SipCreationArgs sipCreationArgs = new SipCreationArgs(
+                            Path.of(newSIPFileName), selectedSAid, selectedDSSid, checksum,
+                            skipLevelValidation, false);
                     ExceptionCollector.clear();
                     importResult = CsvToSipImporter.createSipFromCsv(sipCreationArgs, sourceCSVPath, configPath);
                     footerTextField.setText(I18N.translate("MessageFooterNewFile") + newSIPFileName);

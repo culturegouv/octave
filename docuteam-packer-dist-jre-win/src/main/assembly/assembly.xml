@@ -72,7 +72,7 @@
     </fileSet>
 
     <fileSet>
-      <directory>target/win/${net.adoptopenjdk.java.jre.folderName}/</directory>
+      <directory>target/jre/</directory>
       <outputDirectory>java</outputDirectory>
     </fileSet>
   </fileSets>

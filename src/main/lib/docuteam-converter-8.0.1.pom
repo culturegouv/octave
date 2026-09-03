@@ -5,11 +5,11 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>7.3.1</version>
+    <version>8.0.1</version>
   </parent>
   <groupId>ch.docuteam</groupId>
   <artifactId>docuteam-converter</artifactId>
-  <version>7.3.1</version>
+  <version>8.0.1</version>
   <name>docuteam converter</name>
   <licenses>
     <license>
@@ -31,6 +31,16 @@
     <test.converter.ws.pdftoolsconverter.mtom>true</test.converter.ws.pdftoolsconverter.mtom>
   </properties>
   <dependencies>
+    <dependency>
+      <groupId>org.simplejavamail</groupId>
+      <artifactId>outlook-message-parser</artifactId>
+      <version>${outlook.parser.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents.client5</groupId>
+      <artifactId>httpclient5</artifactId>
+      <version>${org.apache.httpcomponents.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.jodconverter</groupId>
       <artifactId>jodconverter-local</artifactId>
@@ -119,9 +129,21 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpclient</artifactId>
-      <version>${org.apache.httpcomponents.version}</version>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.12.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-inline</artifactId>
+      <version>5.2.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.10.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
