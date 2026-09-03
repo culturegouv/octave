@@ -11,13 +11,13 @@
 
 	<properties>
 		<!-- version information -->
-		<revision>7.3.1</revision>
+		<revision>8.0.1</revision>
 		<changelist>-SNAPSHOT</changelist>
 		<sha1/>
 
 		<!-- plugin versions -->
 		<maven-deploy-plugin.plugin.version>2.8.2</maven-deploy-plugin.plugin.version>
-		<maven-compiler-plugin.plugin.version>3.8.0</maven-compiler-plugin.plugin.version>
+		<maven-compiler-plugin.plugin.version>3.11.0</maven-compiler-plugin.plugin.version>
 		<sql-maven-plugin.plugin.version>1.5</sql-maven-plugin.plugin.version>
 		<maven-failsafe-plugin.plugin.version>3.0.0-M5</maven-failsafe-plugin.plugin.version>
 		<maven-resources-plugin.plugin.version>2.6</maven-resources-plugin.plugin.version>
@@ -56,7 +56,8 @@
 		<!-- dependencies versions -->
 		<junit.version>4.13.2</junit.version>
 		<javax.mail.version>1.4.7</javax.mail.version>
-		<org.apache.poi.version>5.4.1</org.apache.poi.version>
+		<org.apache.poi.version>5.5.1</org.apache.poi.version>
+		<outlook.parser.version>1.14.1</outlook.parser.version>
 		<avalon-framework.avalon-framework.version>4.2.0</avalon-framework.avalon-framework.version>
 		<org.jodconverter.jodconverter-local.version>4.4.9</org.jodconverter.jodconverter-local.version>
 		<com.google.code.gson.gson.version>2.13.1</com.google.code.gson.gson.version>
@@ -77,14 +78,17 @@
 		<javax.servlet.servlet-api.version>2.4</javax.servlet.servlet-api.version>
 		<javax.xml.jaxrpc-api.version>1.1</javax.xml.jaxrpc-api.version>
 		<jaxen.jaxen.version>1.2.0</jaxen.jaxen.version>
-		<net.adoptopenjdk.java.jre.version>17.0.9_9</net.adoptopenjdk.java.jre.version>
-		<net.adoptopenjdk.java.jre.folderName>jdk-17.0.9+9-jre</net.adoptopenjdk.java.jre.folderName>
+		<!--- For java21 the dist-jre* modules have to be changed to jlink, see respective modules -->
+		<net.adoptopenjdk.java.jre.version>21.0.10_7</net.adoptopenjdk.java.jre.version>
+		<net.adoptopenjdk.java.jre.folderName>jdk-21.0.10+7</net.adoptopenjdk.java.jre.folderName>
+
 		<net.iharder.base64.version>2.3.7</net.iharder.base64.version>
 		<net.sf.saxon.Saxon-HE.version>9.9.1-8</net.sf.saxon.Saxon-HE.version>
 		<org.apache.commons.commons-csv.version>1.12.0</org.apache.commons.commons-csv.version>
 		<org.apache.commons.commons-lang3.version>3.18.0</org.apache.commons.commons-lang3.version>
 		<org.apache.kerby.version>1.1.1</org.apache.kerby.version>
-		<org.apache.logging.log4j.version>2.25.1</org.apache.logging.log4j.version>
+		<org.apache.logging.log4j.version>2.25.4</org.apache.logging.log4j.version>
+		<org.slf4j.version>2.0.7</org.slf4j.version>
 		<org.apache.xmlbeans.xmlbeans.version>5.2.1</org.apache.xmlbeans.xmlbeans.version>
 		<org.apache.xmlgraphics.fop.version>2.10</org.apache.xmlgraphics.fop.version>
 		<org.apache.xmlgraphics.batik.version>1.7</org.apache.xmlgraphics.batik.version>
@@ -92,12 +96,23 @@
 		<org.fcrepo.fcrepo.version>3.8.1</org.fcrepo.fcrepo.version>
 		<com.twelvemonkeys.imageio.version>3.12.0</com.twelvemonkeys.imageio.version>
 		<org.icepdf.os.icepdf-viewer.version>6.2.2</org.icepdf.os.icepdf-viewer.version>
-		<org.jsoup.jsoup.version>1.18.3</org.jsoup.jsoup.version>
+		<org.jsoup.jsoup.version>1.21.2</org.jsoup.jsoup.version>
 		<org.swinglabs.swingx.version>1.6.1</org.swinglabs.swingx.version>
 		<de.schlichtherle.truezip.version>7.7.10</de.schlichtherle.truezip.version>
 		<com.drewnoakes.metadata-extractor.version>2.19.0</com.drewnoakes.metadata-extractor.version>
 		<uk.gov.nationalarchives.droid.version>6.8.0</uk.gov.nationalarchives.droid.version>
-		<edu.harvard.hul.ois.jhove.version>1.20.1</edu.harvard.hul.ois.jhove.version>
+		<org.openpreservation.jhove.version>1.34.0</org.openpreservation.jhove.version>
+		<org.openpreservation.jhove.module.aiff.version>1.6.2</org.openpreservation.jhove.module.aiff.version>
+		<org.openpreservation.jhove.module.pdf.version>1.12.8</org.openpreservation.jhove.module.pdf.version>
+		<org.openpreservation.jhove.module.ascii.version>1.4.2</org.openpreservation.jhove.module.ascii.version>
+		<org.openpreservation.jhove.module.xml.version>1.5.5</org.openpreservation.jhove.module.xml.version>
+		<org.openpreservation.jhove.module.utf8.version>1.7.5</org.openpreservation.jhove.module.utf8.version>
+		<org.openpreservation.jhove.module.html.version>1.4.5</org.openpreservation.jhove.module.html.version>
+		<org.openpreservation.jhove.module.wave.version>1.8.3</org.openpreservation.jhove.module.wave.version>
+		<org.openpreservation.jhove.module.jpeg.version>1.5.4</org.openpreservation.jhove.module.jpeg.version>
+		<org.openpreservation.jhove.module.jpeg2000.version>1.4.5</org.openpreservation.jhove.module.jpeg2000.version>
+		<org.openpreservation.jhove.module.tiff.version>1.9.5</org.openpreservation.jhove.module.tiff.version>
+		<org.openpreservation.jhove.module.gif.version>1.4.3</org.openpreservation.jhove.module.gif.version>
 		<net.harawata.appdirs.version>1.2.2</net.harawata.appdirs.version>
 		<com.mysql.mysql-connector-j.version>9.3.0</com.mysql.mysql-connector-j.version>
 		<org.beanshell.version>2.0b4</org.beanshell.version>
@@ -108,11 +123,12 @@
 		<javax.xml.bind.jaxb-api.version>2.3.1</javax.xml.bind.jaxb-api.version>
 		<org.glassfish.jaxb.version>2.3.9</org.glassfish.jaxb.version>
 		<rdf4j.version>4.3.16</rdf4j.version>
-		<apache.commons.io.version>2.18.0</apache.commons.io.version>
+		<apache.commons.compress.version>1.28.0</apache.commons.compress.version>
+		<apache.commons.io.version>2.20.0</apache.commons.io.version>
 		<org.pdftools.version>6.27.2.5</org.pdftools.version>
-		<org.apache.httpcomponents.version>4.5.14</org.apache.httpcomponents.version>
-		<org.apache.cxf.version>3.6.6</org.apache.cxf.version>
-		<org.springframework.version>5.3.39</org.springframework.version>
+		<org.apache.httpcomponents.version>5.5.1</org.apache.httpcomponents.version>
+		<org.apache.cxf.version>3.6.8</org.apache.cxf.version>
+		<org.springframework.version>6.2.17</org.springframework.version>
 		<commons.codec.version>1.10</commons.codec.version>
 		<xerces.xercesImpl.version>2.12.2</xerces.xercesImpl.version>
 		<gov.loc.bagit.version>5.2.0</gov.loc.bagit.version>
@@ -130,10 +146,13 @@
 
 		<!-- use for branding packer -->
 		<packer.artifactId>docuteam-packer</packer.artifactId>
-		<packer.artifactId.linux>docuteam-dist-jre-linux</packer.artifactId.linux>
-		<packer.artifactId.mac>docuteam-dist-jre-mac</packer.artifactId.mac>
-		<packer.artifactId.win>docuteam-dist-jre-win</packer.artifactId.win>
-		<packer.branding.prefix></packer.branding.prefix>
+		<packer.artifactId.linux>docuteam-packer-dist-jre-linux</packer.artifactId.linux>
+		<packer.artifactId.mac>docuteam-packer-dist-jre-mac</packer.artifactId.mac>
+		<packer.artifactId.win>docuteam-packer-dist-jre-win</packer.artifactId.win>
+		<packer.branding.prefix/>
+
+		<!-- sonar stuff -->
+		<sonar.projectKey>docuteam_cosmos</sonar.projectKey>
 	</properties>
 
 	<!-- Default dependency information for projects that inherit from this
@@ -148,6 +167,11 @@
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
 				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents.client5</groupId>
+				<artifactId>httpclient5</artifactId>
+				<version>${org.apache.httpcomponents.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.poi</groupId>
@@ -191,6 +215,11 @@
 				<version>1.10.0</version>
 			</dependency>
 			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-compress</artifactId>
+				<version>${apache.commons.compress.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>fcrepo3-diringest</groupId>
 				<artifactId>fcrepo3-diringest</artifactId>
 				<version>${ch.docuteam.fcrepo3-diringest.version}</version>
@@ -220,6 +249,11 @@
 	            <artifactId>log4j-jcl</artifactId>
 	            <version>${org.apache.logging.log4j.version}</version>
 	        </dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${org.slf4j.version}</version>
+			</dependency>
 	        <dependency>
 	            <groupId>org.apache.cxf</groupId>
 	            <artifactId>cxf-rt-transports-http</artifactId>
@@ -336,7 +370,7 @@
 				<plugin>
 					<groupId>org.sonarsource.scanner.maven</groupId>
 					<artifactId>sonar-maven-plugin</artifactId>
-					<version>3.7.0.1746</version>
+					<version>5.5.0.6356</version>
 				</plugin>
 				<plugin>
 					<groupId>com.mycila</groupId>
@@ -390,7 +424,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin.plugin.version}</version>
 				<configuration>
-					<release>17</release>
+					<release>21</release>
 					<verbose>true</verbose>
 					<fork>true</fork>
 				</configuration>
@@ -646,3 +680,4 @@
 	</distributionManagement>
 
 </project>
+

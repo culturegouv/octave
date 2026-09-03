@@ -59,7 +59,7 @@
     </fileSet>
 
     <fileSet>
-      <directory>target/mac/${net.adoptopenjdk.java.jre.folderName}/</directory>
+      <directory>target/jre</directory>
       <outputDirectory>java</outputDirectory>
     </fileSet>
   </fileSets>

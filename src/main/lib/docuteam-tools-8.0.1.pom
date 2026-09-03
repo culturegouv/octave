@@ -5,11 +5,11 @@
   <parent>
     <groupId>ch.docuteam</groupId>
     <artifactId>docuteam</artifactId>
-    <version>7.3.1</version>
+    <version>8.0.1</version>
   </parent>
   <groupId>ch.docuteam</groupId>
   <artifactId>docuteam-tools</artifactId>
-  <version>7.3.1</version>
+  <version>8.0.1</version>
   <name>docuteam tools</name>
   <licenses>
     <license>
@@ -24,6 +24,11 @@
     <test.env.test>test</test.env.test>
   </properties>
   <dependencies>
+    <dependency>
+      <groupId>net.sf.jopt-simple</groupId>
+      <artifactId>jopt-simple</artifactId>
+      <version>${jopt-simple.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
@@ -55,23 +60,8 @@
       <version>${commons-lang.commons-lang.version}</version>
     </dependency>
     <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>de.schlichtherle.truezip</groupId>
-      <artifactId>truezip-file</artifactId>
-      <version>${de.schlichtherle.truezip.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>de.schlichtherle.truezip</groupId>
-      <artifactId>truezip-kernel</artifactId>
-      <version>${de.schlichtherle.truezip.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>de.schlichtherle.truezip</groupId>
-      <artifactId>truezip-driver-zip</artifactId>
-      <version>${de.schlichtherle.truezip.version}</version>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-compress</artifactId>
     </dependency>
     <dependency>
       <groupId>com.drewnoakes</groupId>
@@ -132,19 +122,70 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.openpreservation.jhove</groupId>
+      <groupId>org.openpreservation.jhove.modules</groupId>
       <artifactId>jhove-modules</artifactId>
-      <version>${edu.harvard.hul.ois.jhove.version}</version>
+      <version>${org.openpreservation.jhove.version}</version>
+      <type>pom</type>
     </dependency>
     <dependency>
-      <groupId>org.openpreservation.jhove</groupId>
-      <artifactId>jhove-ext-modules</artifactId>
-      <version>${edu.harvard.hul.ois.jhove.version}</version>
+      <groupId>org.openpreservation.jhove.modules</groupId>
+      <artifactId>pdf-hul</artifactId>
+      <version>${org.openpreservation.jhove.module.pdf.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openpreservation.jhove.modules</groupId>
+      <artifactId>aiff-hul</artifactId>
+      <version>${org.openpreservation.jhove.module.aiff.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openpreservation.jhove.modules</groupId>
+      <artifactId>ascii-hul</artifactId>
+      <version>${org.openpreservation.jhove.module.ascii.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openpreservation.jhove.modules</groupId>
+      <artifactId>xml-hul</artifactId>
+      <version>${org.openpreservation.jhove.module.xml.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openpreservation.jhove.modules</groupId>
+      <artifactId>utf8-hul</artifactId>
+      <version>${org.openpreservation.jhove.module.utf8.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openpreservation.jhove.modules</groupId>
+      <artifactId>html-hul</artifactId>
+      <version>${org.openpreservation.jhove.module.html.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openpreservation.jhove.modules</groupId>
+      <artifactId>wave-hul</artifactId>
+      <version>${org.openpreservation.jhove.module.wave.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openpreservation.jhove.modules</groupId>
+      <artifactId>jpeg-hul</artifactId>
+      <version>${org.openpreservation.jhove.module.jpeg.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openpreservation.jhove.modules</groupId>
+      <artifactId>jpeg2000-hul</artifactId>
+      <version>${org.openpreservation.jhove.module.jpeg2000.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openpreservation.jhove.modules</groupId>
+      <artifactId>tiff-hul</artifactId>
+      <version>${org.openpreservation.jhove.module.tiff.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openpreservation.jhove.modules</groupId>
+      <artifactId>gif-hul</artifactId>
+      <version>${org.openpreservation.jhove.module.gif.version}</version>
     </dependency>
     <dependency>
       <groupId>org.openpreservation.jhove</groupId>
       <artifactId>jhove-core</artifactId>
-      <version>${edu.harvard.hul.ois.jhove.version}</version>
+      <version>${org.openpreservation.jhove.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.poi</groupId>
