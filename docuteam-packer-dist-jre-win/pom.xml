@@ -126,7 +126,9 @@
                   <arg value="--output"/>
                   <arg value="${project.build.directory}/jre-raw"/>
                   <arg value="--compress=zip-9"/>
-                  <arg value="--strip-debug"/>
+                  <!-- do not use the strip-debug option: when jlink runs on Linux it also strips the native .exe files with objcopy,
+                    which breaks their Authenticode signature and gets javaw.exe blocked by antivirus software -->
+                  <arg value="--strip-java-debug-attributes"/>
                   <arg value="--no-header-files"/>
                   <arg value="--no-man-pages"/>
                 </exec>
@@ -169,7 +171,7 @@
               <classPath>
                 <mainClass>ch.docuteam.packer.gui.launcher.LauncherView</mainClass>
                 <addDependencies>false</addDependencies>
-                <preCp>config\;.\;docuteam-packer-${project.version}.jar</preCp>
+                <preCp>config\;.\;${packer.branding.prefix}docuteam-packer-${project.version}.jar</preCp>
               </classPath>
               <cmdLine>-configDir="./config"</cmdLine>
               <icon>${project.build.outputDirectory}/distribution/DocuteamPacker.ico</icon>

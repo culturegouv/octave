@@ -133,6 +133,8 @@ public class ConvertFilesAction extends AbstractSIPViewAction {
 
         private final AtomicBoolean cancelRequested = new AtomicBoolean(false);
 
+        private final FileConverter fileConverter = new FileConverter();
+
         private final String MessageSuccess = String.format(" : %s\n", I18N.translate("MessageSuccess"));
 
         private final String MessageNoAction = String.format(" : %s\n", I18N.translate("MessageNoAction"));
@@ -161,14 +163,14 @@ public class ConvertFilesAction extends AbstractSIPViewAction {
             File convertedFile = null;
 
             try {
-                convertedFile = FileConverter.convertFile(file.getAbsolutePathString());
+                convertedFile = fileConverter.convertFile(file.getAbsolutePathString());
 
                 if (convertedFile != null) {
                     try {
                         Logger.info("Migrated file: '" + file.getPathString() + "' into '" + convertedFile.getName() +
                             "'");
                         // Migration was OK, now update the METS-file:
-                        final String migrationToolName = FileConverter.getRecentlyUsedFileConverterName();
+                        final String migrationToolName = fileConverter.getRecentlyUsedFileConverterName();
 
                         ExceptionCollector.clear();
 
