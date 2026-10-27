@@ -11,7 +11,7 @@
 
 	<properties>
 		<!-- version information -->
-		<revision>8.0.1</revision>
+		<revision>8.1.0</revision>
 		<changelist>-SNAPSHOT</changelist>
 		<sha1/>
 
@@ -302,7 +302,7 @@
 				<directory>src/main/resources-filtered</directory>
 				<filtering>true</filtering>
 				<excludes>
-					<!-- Windows batch files are encoded in US-ASCII and 
+					<!-- Windows batch files are encoded in US-ASCII and
 						need to be filtered separately -->
 					<exclude>**/*.bat</exclude>
 				</excludes>
@@ -674,7 +674,7 @@
 
 	<distributionManagement>
 		<repository>
-			<id>docuteam-${deploy.repository}</id>
+			<id>deploy-repository</id>
 			<url>https://maven.cloudsmith.io/docuteam/${deploy.repository}/</url>
 		</repository>
 	</distributionManagement>

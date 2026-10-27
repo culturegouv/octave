@@ -19,18 +19,6 @@
   </properties>
 
   <build>
-    <resources>
-      <resource>
-        <directory>${project.basedir}/../docuteam-packer-dist/src/main/resources</directory>
-      </resource>
-      <resource>
-        <directory>${project.basedir}/src/main/resources</directory>
-      </resource>
-      <resource>
-        <directory>${project.basedir}/src/main/resources-filtered</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -199,6 +187,20 @@
         <assembly.baseDirectory>docuteam-packer</assembly.baseDirectory>
         <assembly.startScript>docuteam packer Linux.sh</assembly.startScript>
       </properties>
+      <build>
+        <resources>
+          <resource>
+            <directory>${project.basedir}/../docuteam-packer-dist/src/main/resources</directory>
+          </resource>
+          <resource>
+            <directory>${project.basedir}/src/main/resources</directory>
+          </resource>
+          <resource>
+            <directory>${project.basedir}/src/main/resources-filtered</directory>
+            <filtering>true</filtering>
+          </resource>
+        </resources>
+      </build>
     </profile>
 
     <profile>
@@ -214,6 +216,20 @@
         <assembly.baseDirectory>octave</assembly.baseDirectory>
         <assembly.startScript>octave.sh</assembly.startScript>
       </properties>
+      <build>
+        <resources>
+          <resource>
+            <directory>${project.basedir}/../docuteam-packer-dist/src/main/octave-resources</directory>
+          </resource>
+          <resource>
+            <directory>${project.basedir}/src/main/resources</directory>
+          </resource>
+          <resource>
+            <directory>${project.basedir}/src/main/resources-filtered</directory>
+            <filtering>true</filtering>
+          </resource>
+        </resources>
+      </build>
     </profile>
   </profiles>
 

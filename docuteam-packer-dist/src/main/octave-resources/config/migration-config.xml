@@ -18,6 +18,9 @@
 
 	<application id="6" name="7z" executable="c:\\Program Files\\7-Zip\\7z.exe" parameter="x#{[arg1]}#-o{[arg2]}" />
 
+	<!-- Extracts the attachments of Outlook msg files into a folder, without converting them -->
+	<application id="7" name="Msg attachments extractor" executable="Class:ch.docuteam.converter.MsgAttachmentsExtractor" parameter="{[arg1]}#{[arg2]}" />
+
 
 	<!-- File migration instructions can be based on a PUID, mimetype or extension.
 			If a specific format should not be converted, use a puid-type instruction and set the targetPronom to the same value. -->
@@ -315,6 +318,15 @@
 	<!-- MSG
 	<puid name="x-fmt/430"			applicationID=""	targetExtension="pdf"	targetPronom="" />
 	<extension name="msg"			applicationID=""	targetExtension="pdf"	targetPronom=""> -->
+
+	<!-- MSG: extract the attachments (the original message is copied along with them).
+			Defined for the PUID (checked first) and for the extension (fallback if DROID does not identify the file). -->
+	<puid name="x-fmt/430" premisConverterName="Outlook msg attachments extraction">
+		<step applicationID="7" copy="1"/>
+	</puid>
+	<extension name="msg" premisConverterName="Outlook msg attachments extraction">
+		<step applicationID="7" copy="1"/>
+	</extension>
 
 	<!-- Container
 	<extension name="pst"				applicationID="8"	targetExtension=""	targetPronom="" /> -->
